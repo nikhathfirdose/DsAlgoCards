@@ -1,28 +1,52 @@
-# Day 2 : BT Node traversal 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-class Solution:
-    def levelOrderBottom(self, root) :
-        result = []
-        if(root==None): return result
-        Q=[]
-        Q.append(root)
+# Stack Implementation
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack=[]
+        self.min_stack=[]
         
-        while(len(Q)>0):
-            nodes =[]
-            for i in range(len(Q)):
-                node = Q.pop(0)
-                nodes.append(node.val)
-                if(node.left != None): Q.append(node.left)
-                if(node.right!=None): Q.append(node.right)
-            result.insert(0,nodes)
-        return result
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if len(self.min_stack)==0:
+            self.min_stack.append(x)
+        else:
+            next_min=min(x,self.getMin())
+            self.min_stack.append(next_min)
+            
         
-# obj1 = 
-# pr
-obj2 = Solution()
-print(obj2.levelOrderBottom(TreeNode(4,5,6)))
+
+    def pop(self) -> None:
+        size=len(self.stack)
+        if size!=0:
+            self.stack.pop()
+            self.min_stack.pop()
+        
+        
+
+    def top(self) -> int:
+        size=len(self.stack)
+        if size!=0:
+            return self.stack[size-1]
+        else:
+            return -1
+        
+
+    def getMin(self) -> int:
+        size=len(self.min_stack)
+        if size!=0:
+            return self.min_stack[size-1]
+        else:
+            return -1
+        
+
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()
