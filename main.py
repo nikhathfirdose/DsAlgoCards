@@ -1,52 +1,22 @@
-# Stack Implementation
-class MinStack:
-
-    def __init__(self):
-        """
-        initialize your data structure here.
-        """
-        self.stack=[]
-        self.min_stack=[]
-        
-
-    def push(self, x: int) -> None:
-        self.stack.append(x)
-        if len(self.min_stack)==0:
-            self.min_stack.append(x)
-        else:
-            next_min=min(x,self.getMin())
-            self.min_stack.append(next_min)
+# Day3 - Prison with n cells
+class Solution:
+    def prisonAfterNDays(self, cells, N):
+        _map = {}
+        self.cells = cells
+        for i in range(N):
+            s = str(self.cells)
+            if s in _map:
+                loop_len = i- _map[s]
+                rem_days = (N-i)% loop_len
+                return self.prisonAfterNDays(self.cells, rem_days)
+            else:
+                _map[s] =i
+                prev = self.cells[0]
+                for j in range(1,7):
+                    curr, next = self.cells[j], self.cells[j+1]
+                    self.cells[j] = 1- (prev^next)
+                    prev = curr
+            self.cells[0], self.cells[7]=0,0
             
+        return self.cells
         
-
-    def pop(self) -> None:
-        size=len(self.stack)
-        if size!=0:
-            self.stack.pop()
-            self.min_stack.pop()
-        
-        
-
-    def top(self) -> int:
-        size=len(self.stack)
-        if size!=0:
-            return self.stack[size-1]
-        else:
-            return -1
-        
-
-    def getMin(self) -> int:
-        size=len(self.min_stack)
-        if size!=0:
-            return self.min_stack[size-1]
-        else:
-            return -1
-        
-
-
-# Your MinStack object will be instantiated and called as such:
-# obj = MinStack()
-# obj.push(x)
-# obj.pop()
-# param_3 = obj.top()
-# param_4 = obj.getMin()
