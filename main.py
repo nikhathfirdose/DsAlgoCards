@@ -1,22 +1,16 @@
-# Day3 - Prison with n cells
+# Day 5 - Hamming distance
 class Solution:
-    def prisonAfterNDays(self, cells, N):
-        _map = {}
-        self.cells = cells
-        for i in range(N):
-            s = str(self.cells)
-            if s in _map:
-                loop_len = i- _map[s]
-                rem_days = (N-i)% loop_len
-                return self.prisonAfterNDays(self.cells, rem_days)
-            else:
-                _map[s] =i
-                prev = self.cells[0]
-                for j in range(1,7):
-                    curr, next = self.cells[j], self.cells[j+1]
-                    self.cells[j] = 1- (prev^next)
-                    prev = curr
-            self.cells[0], self.cells[7]=0,0
-            
-        return self.cells
+    def hammingDistance(self, x,y) :
+        if(x>255  or y>255): 
+            a = format(x,'032b') 
+            b = format(y,'032b')
+        else:
+            a, b = format(x,'08b'), format(y,'08b')
+        count=0
+        i=0
+        while i<len(a):
+            if(a[i]!= b[i]):
+                count+=1
+            i+=1
+        return count
         
