@@ -1,16 +1,24 @@
-# Day 5 - Hamming distance
+# Day 6 - Plus one
 class Solution:
-    def hammingDistance(self, x,y) :
-        if(x>255  or y>255): 
-            a = format(x,'032b') 
-            b = format(y,'032b')
-        else:
-            a, b = format(x,'08b'), format(y,'08b')
-        count=0
-        i=0
-        while i<len(a):
-            if(a[i]!= b[i]):
-                count+=1
-            i+=1
-        return count
-        
+    def plusOne(self, digits):
+        listToStr = ''.join([str(elem) for elem in digits]) 
+        value = int(listToStr)+1
+        return list(str(value))
+            
+# Day 7 - Island Perimeter
+class Solutions:
+    def islandPerimeter(self, grid) :
+        if(len(grid)==0 or len(grid[0])==0): return 0
+        perimeter=0
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                # print(grid[i][j])
+                if(grid[i][j]==1):
+                    perimeter+=4
+                    if(i>0 and grid[i-1][j]==1):
+                        perimeter-=2
+                    if(j>0 and grid[i][j-1]==1):
+                        perimeter-=2
+                            # print(perimeter)
+        return perimeter
+                        
