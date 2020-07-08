@@ -1,13 +1,6 @@
-# Day 6 - Plus one
+# Day 8 - Island Perimeter
 class Solution:
-    def plusOne(self, digits):
-        listToStr = ''.join([str(elem) for elem in digits]) 
-        value = int(listToStr)+1
-        return list(str(value))
-            
-# Day 7 - Island Perimeter
-class Solutions:
-    def islandPerimeter(self, grid) :
+    def islandPerimeter(self, grid):
         if(len(grid)==0 or len(grid[0])==0): return 0
         perimeter=0
         for i in range(len(grid)):
