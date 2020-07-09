@@ -1,17 +1,25 @@
-# Day 8 - Island Perimeter
+# Day 9 
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
-    def islandPerimeter(self, grid):
-        if(len(grid)==0 or len(grid[0])==0): return 0
-        perimeter=0
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                # print(grid[i][j])
-                if(grid[i][j]==1):
-                    perimeter+=4
-                    if(i>0 and grid[i-1][j]==1):
-                        perimeter-=2
-                    if(j>0 and grid[i][j-1]==1):
-                        perimeter-=2
-                            # print(perimeter)
-        return perimeter
-                        
+    def widthOfBinaryTree(self, root):
+        if root == None: return 0
+        result=1
+        Q=[[root, 0]]
+        while(len(Q)>0):
+            count=len(Q)
+            start=Q[0][1]
+            end=Q[-1][1]
+            result=max(result, end-start+1)
+            for i in range(count):
+                p=Q[0]
+                idx=p[1]-start
+                Q.pop(0)
+                if(p[0].left != None): Q.append([p[0].left, 2*idx+1])
+                if(p[0].right != None): Q.append([p[0].right, 2*idx+2])
+        return result
+        
