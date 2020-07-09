@@ -1,25 +1,32 @@
-# Day 9 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-class Solution:
-    def widthOfBinaryTree(self, root):
-        if root == None: return 0
-        result=1
-        Q=[[root, 0]]
-        while(len(Q)>0):
-            count=len(Q)
-            start=Q[0][1]
-            end=Q[-1][1]
-            result=max(result, end-start+1)
-            for i in range(count):
-                p=Q[0]
-                idx=p[1]-start
-                Q.pop(0)
-                if(p[0].left != None): Q.append([p[0].left, 2*idx+1])
-                if(p[0].right != None): Q.append([p[0].right, 2*idx+2])
-        return result
-        
+# The task is to create a class SoccerPlayer with name and goals attributes, then create 3 player objects and then using a function find out the maximum goals and print that.
+
+# class  SoccerPlayer:
+#   def __init__(self, name, goals):
+#     self.name = name
+#     self.goals = goals
+# def CalculateMaxGoals(self, *args):
+#   print(args)
+#   return max(*args)
+
+# p1= SoccerPlayer("a",100)
+# p2= SoccerPlayer("b",12)
+# p3=SoccerPlayer("c", 23)
+# print(p1.goals)
+# max_goals = CalculateMaxGoals(p1.goals, p2.goals,p3.goals)
+# print(f'max goals are {max_goals}')
+class SoccerPlayer:
+  def __init__(self, name, goals):
+    self.name = name
+    self.goals = goals
+
+
+def calculateMaxGoals(*args):
+  print(args)
+  return max(*args)
+
+messi = SoccerPlayer('messi', 10)
+ronaldo = SoccerPlayer('ronaldo',22)
+neymar = SoccerPlayer('neymar', 8)
+
+max_goals = calculateMaxGoals(messi.goals, ronaldo.goals, neymar.goals)
+print(f'The highest number of goals is {max_goals} goals')
