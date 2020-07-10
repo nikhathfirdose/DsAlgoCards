@@ -1,32 +1,45 @@
-# The task is to create a class SoccerPlayer with name and goals attributes, then create 3 player objects and then using a function find out the maximum goals and print that.
+# Decorators
+class Calculator:
+  def __init__(self,type):
+    self.type = type
+  def sums(*args):
+    return args
+  @classmethod
+  def calculate_sum(cls, *args): 
+        return args
+    # cls is just like self which needs to passed as 1st parameter
+  @staticmethod
+  def calculate_sums( num1, num2): 
+        return num1 + num2
 
-# class  SoccerPlayer:
-#   def __init__(self, name, goals):
-#     self.name = name
-#     self.goals = goals
-# def CalculateMaxGoals(self, *args):
-#   print(args)
-#   return max(*args)
+print(Calculator.calculate_sum(3,5,"op")) # 
+print(type(Calculator.calculate_sum(3,6)))
 
-# p1= SoccerPlayer("a",100)
-# p2= SoccerPlayer("b",12)
-# p3=SoccerPlayer("c", 23)
-# print(p1.goals)
-# max_goals = CalculateMaxGoals(p1.goals, p2.goals,p3.goals)
-# print(f'max goals are {max_goals}')
-class SoccerPlayer:
-  def __init__(self, name, goals):
+print(Calculator.calculate_sums(3,15)) # 
+print(type(Calculator.calculate_sums(3,6)))
+
+print(Calculator.sums(3,15)) # 
+print(type(Calculator.sums(3,6)))
+
+# Inheeritance
+class Player:
+  def __init__(self, name, age):
     self.name = name
-    self.goals = goals
+    self.age = age
 
+  def run(self):
+    return f'{self.name} is running'
 
-def calculateMaxGoals(*args):
-  print(args)
-  return max(*args)
+class Cricketer(Player): # Syntax to inherit a class
+  def catch_ball(self):
+    return f'{self.name} Caught the ball'
 
-messi = SoccerPlayer('messi', 10)
-ronaldo = SoccerPlayer('ronaldo',22)
-neymar = SoccerPlayer('neymar', 8)
+class Batsman(Cricketer):
+  def swing_bat(self):
+    return f'what a shot by {self.name}'
 
-max_goals = calculateMaxGoals(messi.goals, ronaldo.goals, neymar.goals)
-print(f'The highest number of goals is {max_goals} goals')
+player1 = Batsman('Virat Kohli', 31)
+
+print(player1.run())
+print(player1.catch_ball())
+print(player1.swing_bat())
