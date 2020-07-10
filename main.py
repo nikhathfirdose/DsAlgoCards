@@ -1,45 +1,23 @@
-# Decorators
-class Calculator:
-  def __init__(self,type):
-    self.type = type
-  def sums(*args):
-    return args
-  @classmethod
-  def calculate_sum(cls, *args): 
-        return args
-    # cls is just like self which needs to passed as 1st parameter
-  @staticmethod
-  def calculate_sums( num1, num2): 
-        return num1 + num2
+# Polymorphism
 
-print(Calculator.calculate_sum(3,5,"op")) # 
-print(type(Calculator.calculate_sum(3,6)))
-
-print(Calculator.calculate_sums(3,15)) # 
-print(type(Calculator.calculate_sums(3,6)))
-
-print(Calculator.sums(3,15)) # 
-print(type(Calculator.sums(3,6)))
-
-# Inheeritance
-class Player:
-  def __init__(self, name, age):
+class ProgLanguage:
+  def __init__(self, name):
     self.name = name
-    self.age = age
 
-  def run(self):
-    return f'{self.name} is running'
+class JavaScript(ProgLanguage):
+  def comment(self):
+    print(f'// is a comment in {self.name}')
 
-class Cricketer(Player): # Syntax to inherit a class
-  def catch_ball(self):
-    return f'{self.name} Caught the ball'
+class Python(ProgLanguage):
+  def comment(self):
+    print(f'# is a comment in {self.name}')
 
-class Batsman(Cricketer):
-  def swing_bat(self):
-    return f'what a shot by {self.name}'
 
-player1 = Batsman('Virat Kohli', 31)
+obj1 = JavaScript("JavaScript")
+obj2= Python("Python")
 
-print(player1.run())
-print(player1.catch_ball())
-print(player1.swing_bat())
+for i in [obj1,obj2]:
+  i.comment()
+
+obj1.comment()
+obj2.comment()
